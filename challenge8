@@ -1,0 +1,12 @@
+#include<stdio.h>
+int main(){
+    int a,b,c;
+    printf("entrer les trois nombre ");
+    scanf("%d %d %d",&a,&b,&c);
+    int geometrique;
+    geometrique=(a * b * c)^(1/3);
+    printf("la forme geometrique de trois nombre est %d",geometrique);
+
+
+    return 0;
+}
