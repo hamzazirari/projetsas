@@ -10,15 +10,15 @@ int main(){
         printf("entrer le [%d] element de tableau \n",i);
         scanf("%d",&t[i]);
     }
-    int min;
-    min=t[0];
+    int max;
+    max=t[0];
 
     for(i=0;i<n;i++){
-        if(t[i]<min){
-            min=t[i];
+        if(t[i]>max){
+            max=t[i];
         }
     }
-    printf("le min est %d",min);
+    printf("le max est %d",max);
 
    return 0;
   } 
