@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <string.h>
+#include <string.h>s
 #define MAX_CONTACTS 50
 
 int main()
