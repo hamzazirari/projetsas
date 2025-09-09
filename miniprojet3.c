@@ -1,20 +1,106 @@
 #include <stdio.h>
-#include <string.h>s
+#include <string.h>
 #define MAX_CONTACTS 50
+typedef struct
+{
+    char nom[MAX_CONTACTS];
+    char telephone[MAX_CONTACTS];
+    char email[MAX_CONTACTS];
+} Contact;
+
+Contact contacts[MAX_CONTACTS];
+int cmp = 0;
+
+void ajouter()
+{
+
+    printf("Nom du contact : \n");
+    getchar();
+    fgets(contacts[cmp].nom, sizeof(contacts[cmp].nom), stdin);
+
+    printf("Numero de telephone : \n");
+    fgets(contacts[cmp].telephone, sizeof(contacts[cmp].telephone), stdin);
+
+    printf("Adresse e mail : \n");
+    fgets(contacts[cmp].email, sizeof(contacts[cmp].email), stdin);
+
+    cmp++;
+}
+
+void modifier()
+{
+    char search[MAX_CONTACTS];
+    printf("nom du contact a modifier:\n");
+    getchar();
+    fgets(search, sizeof(search), stdin);
+
+    for (int i = 0; i < cmp; i++)
+    {
+        if (strcmp(search, contacts[i].nom) == 0)
+        {
+            printf("nouveau numero de telephone : \n");
+            fgets(contacts[i].telephone, sizeof(contacts[i].telephone), stdin);
+            printf("nouvelle adresse e email: \n");
+            fgets(contacts[i].email, sizeof(contacts[i].email), stdin);
+            break;
+        }
+    }
+}
+
+void suprimer()
+{
+    char search[MAX_CONTACTS];
+    printf("Nom du contact a supprimer : \n");
+    getchar();
+    fgets(search, sizeof(search), stdin);
+
+    for (int i = 0; i < cmp; i++)
+    {
+        if (strcmp(search, contacts[i].nom) == 0)
+        {
+            for (int j = i; j < cmp - 1; j++)
+            {
+                contacts[j] = contacts[j + 1];
+            }
+            cmp--;
+            break;
+        }
+    }
+}
+
+void afficher()
+{
+    printf("-------Liste des contacts---------\n");
+    for (int i = 0; i < cmp; i++)
+    {
+        printf("nom : %s", contacts[i].nom);
+        printf("telephone : %s", contacts[i].telephone);
+        printf("email : %s", contacts[i].email);
+    }
+}
+
+void rechercher()
+{
+    char search[MAX_CONTACTS];
+    printf("Nom du contact a rechercher : \n");
+    getchar();
+    fgets(search, sizeof(search), stdin);
+
+    for (int i = 0; i < cmp; i++)
+    {
+        if (strcmp(search, contacts[i].nom) == 0)
+        {
+            printf("Nom : %s", contacts[i].nom);
+            printf("telephone : %s", contacts[i].telephone);
+            printf("Email : %s", contacts[i].email);
+            break;
+        }
+    }
+}
 
 int main()
 {
-
-    typedef struct
-    {
-        char nom[MAX_CONTACTS];
-        char telephone[MAX_CONTACTS];
-        char email[MAX_CONTACTS];
-    } Contact;
-
-    Contact contacts[MAX_CONTACTS];
-    int cmp = 0, choix = 0;
-
+    int choix;
     do
     {
         printf("-------menu---------\n");
@@ -29,91 +115,28 @@ int main()
         switch (choix)
         {
         case 1:
-            printf("Nom du contact : \n");
-            getchar();
-            fgets(contacts[cmp].nom, sizeof(contacts[cmp].nom), stdin);
-
-            printf("Numéro de téléphone : \n");
-            fgets(contacts[cmp].telephone, sizeof(contacts[cmp].telephone), stdin);
-
-            printf("Adresse e-mail : \n");
-            fgets(contacts[cmp].email, sizeof(contacts[cmp].email), stdin);
-
-            cmp++;
+            ajouter();
             break;
 
         case 2:
         {
-            char search[MAX_CONTACTS];
-            printf("nom du contact a modifier:\n");
-            getchar();
-            fgets(search, sizeof(search), stdin);
-
-            for (int i = 0; i < cmp; i++)
-            {
-                if (strcmp(search, contacts[i].nom) == 0)
-                {
-                    printf("nouveau numéro de téléphone : \n");
-                    fgets(contacts[i].telephone, sizeof(contacts[i].telephone), stdin);
-                    printf("nouvelle adresse e-mail : \n");
-                    fgets(contacts[i].email, sizeof(contacts[i].email), stdin);
-                    break;
-                }
-            }
+            modifier();
             break;
         }
 
         case 3:
         {
-            char search[MAX_CONTACTS];
-            printf("Nom du contact à supprimer : \n");
-            getchar();
-            fgets(search, sizeof(search), stdin);
-
-            for (int i = 0; i < cmp; i++)
-            {
-                if (strcmp(search, contacts[i].nom) == 0)
-                {
-                    for (int j = i; j < cmp - 1; j++)
-                    {
-                        contacts[j] = contacts[j + 1];
-                    }
-                    cmp--;
-                    break;
-                }
-            }
+            suprimer();
             break;
         }
 
         case 4:
-            printf("-------Liste des contacts---------\n");
-            for (int i = 0; i < cmp; i++)
-            {
-                printf("nom : %s", contacts[i].nom);
-                printf("telephone : %s", contacts[i].telephone);
-                printf("email : %s", contacts[i].email);
-            }
+            afficher();
             break;
 
         case 5:
-        {
-            char search[MAX_CONTACTS];
-            printf("Nom du contact à rechercher : \n");
-            getchar();
-            fgets(search, sizeof(search), stdin);
-
-            for (int i = 0; i < cmp; i++)
-            {
-                if (strcmp(search, contacts[i].nom) == 0)
-                {
-                    printf("Nom : %s", contacts[i].nom);
-                    printf("Téléphone : %s", contacts[i].telephone);
-                    printf("Email : %s", contacts[i].email);
-                    break;
-                }
-            }
+            rechercher();
             break;
-        }
 
         default:
             printf("Choix invalide.\n");
