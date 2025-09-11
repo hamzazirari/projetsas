@@ -1,56 +1,47 @@
-int main()
+void modifier()
 {
+    int choixpostem;
+    char searchId[50];
+    printf("entrer ID de joueur a modifier:\n");
+    getchar();
+    fgets(searchId, sizeof(searchId), stdin);
 
-    int choix;
-
-    do
+    for (int i = 0; i < nbJoueur; i++)
     {
-
-        printf("------------ menu principale --------------\n");
-        printf(" 1 : ajouter un joueur :\n");
-        printf(" 2 : Afficher la liste de tous les joueurs :\n");
-        printf(" 3 : Modifier un joueur : \n");
-        printf(" 4 : Supprimer un joueur :\n");
-        printf(" 5 : Rechercher un joueur : \n");
-        printf(" 6 : Statistiques : \n");
-        printf(" 0: Quitter. \n");
-        printf("------------------------------------------\n");
-        printf("entrer votre choix\n");
-
-        scanf("%d", &choix);
-
-        switch (choix)
+        if (strcmp(searchId, j[i].id) == 0)
         {
-        case 1:
-            ajouter();
+            printf("entrer le nouveau poste de joueur : \n");
+            printf("----choisir le poste de joueur : \n");
+            printf(" 1 : gardien \n");
+            printf(" 2 : defenseur \n");
+            printf(" 3 : milieu \n");
+            printf(" 4 : attaquant \n");
+            scanf("%d", &choixpostem);
+            switch (choixpostem)
+            {
+            case 1:
+                strcpy(j[nbJoueur].poste, "gardien");
+                break;
+            case 2:
+                strcpy(j[nbJoueur].poste, "defenseur");
+                break;
+            case 3:
+                strcpy(j[nbJoueur].poste, "milieu");
+                break;
+            case 4:
+                strcpy(j[nbJoueur].poste, "attaquant");
+                break;
 
-            break;
-
-        case 2:
-            afficher();
-            break;
-
-        case 3:
-
-            break;
-
-        case 4:
-
-            break;
-
-        case 5:
-
-            break;
-
-        case 6:
-
-            break;
-
-        default:
-            printf("Choix invalide.\n");
+            default:
+                printf("Choix invalide.\n");
+                break;
+            }
+            printf("entrer le nouveau age de joueur  : \n");
+            scanf("%d", &j[nbJoueur].age);
+            getchar();
+            printf("entrer combient de buts le joueur a marque : \n");
+            scanf("%d", &j[nbJoueur].buts);
+            getchar();
         }
-
-    } while (choix != 0);
-
-    return 0;
+    }
 }
