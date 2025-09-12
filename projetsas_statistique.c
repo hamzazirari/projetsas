@@ -608,12 +608,28 @@ void statistique()
                     printf(" Age       : %d\n", j[i].age);
                     printf(" Maillot   : %d\n", j[i].numeroMaillot);
                     printf(" Buts      : %d\n", j[i].buts);
-                    printf("=================================================\n");
+                    printf("=======================================================\n");
                 }
             }
 
             break;
         case 4:
+            int maxbut = 0;
+            for (int i = 0; i < nbJoueur; i++)
+            {
+                if (j[i].buts > j[maxbut].buts)
+                {
+                    maxbut = i;
+                }
+            }
+            printf(" ID        : %s\n", j[maxbut].id);
+            printf(" Nom       : %s\n", j[maxbut].nom);
+            printf(" Prenom    : %s\n", j[maxbut].prenom);
+            printf(" Poste     : %s\n", j[maxbut].poste);
+            printf(" Age       : %d\n", j[maxbut].age);
+            printf(" Maillot   : %d\n", j[maxbut].numeroMaillot);
+            printf(" Buts      : %d\n", j[maxbut].buts);
+            printf("=======================================================\n");
 
             break;
         case 5:

@@ -434,8 +434,8 @@ void modifier()
         {
             if (stricmp(searchId, j[i].id) == 0)
             {
-                printf("entrer le nouveau age de joueur  : \n");
-                scanf("%d", &j[i].age);
+                printf("entrer les nouveau buts de joueur  : \n");
+                scanf("%d", &j[i].buts);
             }
         }
 
@@ -569,7 +569,8 @@ void statistique()
         printf("3 : Afficher les joueurs ayant marque plus de X buts (X introduit par l utilisateur).\n");
         printf("4 : Afficher le meilleur buteur (joueur avec le maximum de buts).\n");
         printf("5 : Afficher le joueur le plus jeune et le plus age.\n");
-        printf("0 :quiter");
+        printf("0 :quiter\n");
+        printf("entrer votre choix\n");
         scanf("%d", &choixsta);
         switch (choixsta)
         {
@@ -608,15 +609,49 @@ void statistique()
                     printf(" Age       : %d\n", j[i].age);
                     printf(" Maillot   : %d\n", j[i].numeroMaillot);
                     printf(" Buts      : %d\n", j[i].buts);
-                    printf("=================================================\n");
+                    printf("=======================================================\n");
                 }
             }
 
             break;
         case 4:
+            int maxbutindice = 0;
+            for (int i = 0; i < nbJoueur; i++)
+            {
+                if (j[i].buts > j[maxbut].buts)
+                {
+                    maxbutindice = i;
+                }
+            }
+            printf(" ID        : %s\n", j[maxbutindice].id);
+            printf(" Nom       : %s\n", j[maxbutindice].nom);
+            printf(" Prenom    : %s\n", j[maxbutindice].prenom);
+            printf(" Poste     : %s\n", j[maxbutindice].poste);
+            printf(" Age       : %d\n", j[maxbutindice].age);
+            printf(" Maillot   : %d\n", j[maxbutindice].numeroMaillot);
+            printf(" Buts      : %d\n", j[maxbutindice].buts);
+            printf("=======================================================\n");
 
             break;
         case 5:
+            
+            int posmin = 0;
+            int posmax = 0;
+
+            for (int i = 1; i < nbJoueur; i++) {
+            if (j[i].age > j[posmax].age) {
+                posmax = i;
+            }
+            if (j[i].age < j[posmin].age) {
+                posmin = i;
+            }
+        }
+
+        printf("\n--- Joueur le plus jeune ---\n");
+        printf("%s %s | Age : %d\n", j[posmin].nom, j[posmin].prenom, j[posmin].age);
+
+        printf("\n--- Joueur le plus âgé ---\n");
+        printf("%s %s | Age : %d\n", j[posmax].nom, j[posmax].prenom, j[posmax].age);
 
             break;
 
